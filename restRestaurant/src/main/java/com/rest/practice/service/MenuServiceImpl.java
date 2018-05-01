@@ -3,6 +3,7 @@ package com.rest.practice.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -28,8 +29,14 @@ public class MenuServiceImpl implements MenuService{
 	}
 
 	@Override
-	public MenuItem edit(long id, MenuItem menuItem) {
-		// TODO Auto-generated method stub
+	public MenuItem edit(Long id, MenuItem updatedMenuItem) {
+		MenuItem menuItem = menuRepository.findMenuItemById(id);
+		if(menuItem != null) {
+			BeanUtils.copyProperties(menuItem, updatedMenuItem);
+			menuRepository.save(updatedMenuItem);
+			return menuItem;
+		} 
+		// Replace null 
 		return null;
 	}
 
@@ -43,5 +50,5 @@ public class MenuServiceImpl implements MenuService{
 		return menuRepository.findById(id);
 	}
 
-}
+} 
  

@@ -10,7 +10,7 @@ import com.rest.practice.models.MenuItem;
 public interface MenuService {
 	public MenuItem save(MenuItem menuItem);
 	
-	public MenuItem edit(long id, MenuItem menuItem);
+	public MenuItem edit(Long id, MenuItem menuItem);
 
 	public List<MenuItem> findAll();
 	
