@@ -31,8 +31,8 @@ public class MenuController {
     }
 	
 	@GetMapping("/{id}")
-    public ResponseEntity<Optional<MenuItem>> getMenuItem(@PathVariable ("id")Long id) {
-		Optional<MenuItem> menuItem = menuService.find(id);
+    public ResponseEntity<MenuItem> getMenuItem(@PathVariable ("id")Long id) {
+		MenuItem menuItem = menuService.find(id);
 		return ResponseEntity.status(200).body(menuItem);
     }
 	

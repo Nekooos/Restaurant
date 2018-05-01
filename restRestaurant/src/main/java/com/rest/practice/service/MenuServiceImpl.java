@@ -46,8 +46,8 @@ public class MenuServiceImpl implements MenuService{
 	}
 
 	@Override
-	public Optional<MenuItem> find(Long id){
-		return menuRepository.findById(id);
+	public MenuItem find(Long id){
+		return menuRepository.findMenuItemById(id);
 	}
 
 } 

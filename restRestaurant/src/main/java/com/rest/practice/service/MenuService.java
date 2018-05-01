@@ -16,5 +16,5 @@ public interface MenuService {
 	
 	public void delete(long id);
 
-	public Optional<MenuItem> find(Long id);
+	public MenuItem find(Long id);
 }
