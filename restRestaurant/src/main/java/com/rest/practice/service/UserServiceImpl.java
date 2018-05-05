@@ -1,12 +1,14 @@
+/*
 package com.rest.practice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.rest.practice.models.User;
 import com.rest.practice.repository.UserDao;
-
+@Service
 public class UserServiceImpl implements UserService {
 	
 	@Autowired
@@ -26,3 +28,4 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 }
+*/

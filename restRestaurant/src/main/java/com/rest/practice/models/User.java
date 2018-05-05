@@ -1,3 +1,4 @@
+/*
 package com.rest.practice.models;
 
 import java.util.ArrayList;
@@ -68,3 +69,4 @@ public class User implements UserDetails {
 		return enabled;
 	}
 }
+*/
