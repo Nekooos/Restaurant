@@ -1,10 +1,8 @@
 package com.rest.practice.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,12 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rest.practice.models.MenuItem;
 import com.rest.practice.service.MenuService;
-import com.rest.practice.service.MenuServiceImpl;
 
 @RestController
 @RequestMapping("/menu")
@@ -48,13 +44,13 @@ public class MenuController {
 		 menuItem = menuService.edit(id, menuItem);
 		 return ResponseEntity.status(200).body(menuItem);
 	}
-	
+
 	@PutMapping("/delete/{id}")
 	public ResponseEntity<?> deleteMenuItem(@PathVariable ("id")long id) {
 		 menuService.delete(id);
 		 return ResponseEntity.status(200).body("Menu item was deleted succesfully");
 	}
-	
+
 	 
 	/*
 	 * public ResponseEntity<?> method() {

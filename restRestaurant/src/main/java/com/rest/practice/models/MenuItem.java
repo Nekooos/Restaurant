@@ -11,13 +11,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
-import org.springframework.core.style.ToStringCreator;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -28,19 +27,26 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 	property = "type")
 @JsonSubTypes({ 
 	@Type(value = Appetizer.class, name = "appetizer"), 
+	@Type(value = MainCourse.class, name = "maincourse"),
+	@Type(value = Dessert.class, name = "dessert"),
+	@Type(value = Drink.class, name = "drink")
 })
 public abstract class MenuItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private long id;
+	
 	@NotNull
 	private String name;
+	
 	@NotNull
 	private double price;
+	
 	@NotNull
+	@Column(length=100)
 	private String description;
 	
-	@JsonIgnore
+	@JsonProperty(access = Access.WRITE_ONLY) 
 	@Column(name="secret_ingredient")
 	private String secretIngredient;
 	
@@ -48,15 +54,15 @@ public abstract class MenuItem {
 		super();
 	}
 	
-	public void setId(long id) {
-		this.id = id;
-	}
-
 	public MenuItem(String name, double price, String description, String secret) {
 		this.name = name;
 		this.price = price;
 		this.description = description;
 		this.secretIngredient = secret;
+	}
+	
+	public void setId(long id) {
+		this.id = id;
 	}
 	
 	public long getId() {

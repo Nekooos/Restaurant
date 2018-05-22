@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.rest.practice.models.MenuItem;
 
 @Repository
-public interface MenuItemDao extends JpaRepository<MenuItem, Long> {
+public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
 	
 	@Query("SELECT m FROM MenuItem m WHERE id = :menuItemId")
 	MenuItem findMenuItemById(@Param("menuItemId") Long id);

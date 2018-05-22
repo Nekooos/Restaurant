@@ -1,9 +1,6 @@
 package com.rest.practice.service;
 
 import java.util.List;
-import java.util.Optional;
-
-import org.springframework.http.ResponseEntity;
 
 import com.rest.practice.models.MenuItem;
 
