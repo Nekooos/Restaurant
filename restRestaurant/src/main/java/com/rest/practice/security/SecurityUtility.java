@@ -1,4 +1,4 @@
-package com.rest.practice.config;
+package com.rest.practice.security;
 
 import java.security.SecureRandom;
 import java.util.Random;
