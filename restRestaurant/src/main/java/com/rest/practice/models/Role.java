@@ -24,12 +24,12 @@ public class Role implements Serializable{
 	
 	@NotNull
 	private String name;
-	
+	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<UserRole> userRoles = new HashSet<>();
 	
 	public Role() {}
 	
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}

@@ -13,16 +13,4 @@ import com.rest.practice.service.MenuService;
 @SpringBootTest
 public class RestRestaurantApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-	@Autowired 
-	private MenuService menuService;
-	
-	@Test
-	public void save() {
-		Drink drink = new Drink();
-		menuService.save(drink);
-	}
-
 }

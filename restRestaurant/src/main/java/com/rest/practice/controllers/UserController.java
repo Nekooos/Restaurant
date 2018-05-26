@@ -1,4 +1,3 @@
-/*
 package com.rest.practice.controllers;
 
 import java.util.List;
@@ -24,7 +23,8 @@ public class UserController {
 	@GetMapping("/all")
 	public List<User> getAllUsers() {
 		
-		return null;
+		List<User> list = userService.findAll();
+		return list;
 	}
 	
 	@PostMapping("/save")
@@ -34,4 +34,3 @@ public class UserController {
 	}
 	
 }
-*/
