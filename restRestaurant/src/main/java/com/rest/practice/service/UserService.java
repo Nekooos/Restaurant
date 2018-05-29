@@ -9,8 +9,8 @@ import com.rest.practice.models.User;
 
 public interface UserService extends UserDetailsService{
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	void save(User user);
-	
+	User save(User user);
+	@PreAuthorize("hasRole('ROLE_USER')")
 	List<User> findAll();
 }
 

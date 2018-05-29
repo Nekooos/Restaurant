@@ -7,5 +7,7 @@ import com.rest.practice.models.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
+	User save(User user);
+	
 	User findByUsername(String username);
 }
