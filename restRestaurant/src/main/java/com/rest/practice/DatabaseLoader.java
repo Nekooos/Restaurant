@@ -3,7 +3,6 @@ package com.rest.practice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.stereotype.Component;
 
 import com.rest.practice.models.User;
 import com.rest.practice.repository.UserRepository;
@@ -19,7 +18,6 @@ public class DatabaseLoader implements ApplicationRunner {
 	
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
-		System.out.println("start");
 		String[] roles = {"ROLE_ADMIN"};
 		User user = new User();
 		user.setFirstName("Mirre");
@@ -28,9 +26,6 @@ public class DatabaseLoader implements ApplicationRunner {
 		user.setUsername("user");
 		user.setRoles(roles);
 		userRepository.save(user);
-		System.out.println("done");
-		String[] temp = user.getRoles();
-		System.out.println(temp[1]);
 	}
 	
 }

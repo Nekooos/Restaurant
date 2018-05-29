@@ -2,6 +2,7 @@ package com.rest.practice.models;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,18 +17,45 @@ public class Menu {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
+	@Column(name = "menu_name")
+	private String menuName;
+	
 	@ManyToOne
 	private Restaurant restaurant;
 	
 	@OneToMany
-	private List<Drink> drinks;
+	private List<MenuItem> menuitems;
 	
-	@OneToMany
-	private List<Dessert> desserts;
+	public Menu() {}
 	
-	@OneToMany
-	private List<MainCourse> mainCourse;
+	public Menu(String menuName, Restaurant restaurant, List<MenuItem> menuitems) {
+		this.menuName = menuName;
+		this.restaurant = restaurant;
+		this.menuitems = menuitems;
+	}
+
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
+	}
+
+	public List<MenuItem> getMenuitems() {
+		return menuitems;
+	}
+
+	public void setMenuitems(List<MenuItem> menuitems) {
+		this.menuitems = menuitems;
+	}
 	
-	@OneToMany
-	private List<Appetizer> appetizers;
 }

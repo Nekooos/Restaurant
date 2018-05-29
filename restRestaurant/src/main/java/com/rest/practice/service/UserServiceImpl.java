@@ -15,7 +15,6 @@ import com.rest.practice.repository.UserRepository;;
 @Component
 public class UserServiceImpl implements UserService {
 	
-
 	@Autowired
 	private UserRepository userRepository;
 	
@@ -40,5 +39,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findAll() {
 		return (List<User>) userRepository.findAll();
+	}
+
+	@Override
+	public void delete(long id) {
+		userRepository.deleteById(id);
+		
 	}
 }
