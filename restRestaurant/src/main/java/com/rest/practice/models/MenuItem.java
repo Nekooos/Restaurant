@@ -76,7 +76,7 @@ public abstract class MenuItem {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	
 	public String getSecretIngredient() {
 		return secretIngredient;
 	}

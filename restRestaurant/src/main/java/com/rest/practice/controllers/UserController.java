@@ -28,7 +28,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/save")
-	public ResponseEntity<User> saveMenuItem(@RequestBody User user) {
+	public ResponseEntity<User> saveUser(@RequestBody User user) {
 		 userService.save(user);
 		 return ResponseEntity.status(201).body(user);
 	}

@@ -22,35 +22,38 @@ import javax.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class User implements UserDetails, Serializable {
+public class User implements Serializable {
 
 	private static final long serialVersionUID = -3303786152662727817L;
+	
+	public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="Id", nullable=false, updatable = false)
 	private Long id;
-	
-	@Column(unique = true, length=20)
-	@Size(min = 8, max = 20)
+	private String firstName;
+	private String lastName;
 	private String username;
-	
-	@Column(length = 100)
-	@Size(min = 8, max = 100)
-	private String password;
-	
-	@Column(nullable = false)
-	private boolean enabled;
-	
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JsonIgnore
-	private Set<UserRole> userRoles = new HashSet<>();
+	private String password;
+	@JsonIgnore
+	private String[] roles;
 	
 	public User() {}
+	
+	public User(String username, String firstName, String lastName,  String password, String[] roles) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.username = username;
+		setPassword(password);
+		this.roles = roles;
+	}
 	
 	public Long getId() {
 		return id;
@@ -73,52 +76,31 @@ public class User implements UserDetails, Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = PASSWORD_ENCODER.encode(password);
 	}
 
-	public boolean isEnabled() {
-		return enabled;
+	public String[] getRoles() {
+		return roles;
 	}
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
+	public void setRoles(String[] roles) {
+		this.roles = roles;
 	}
 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Set<GrantedAuthority> authorities = new HashSet<>();
-		userRoles.forEach( ur -> authorities.add(new Authority(ur.getRole().getName())));
-		return authorities;
+	public String getLastName() {
+		return lastName;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-	
-	
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}	
 }
 

@@ -1,3 +1,4 @@
+/*
 package com.rest.practice.security;
 
 import java.security.SecureRandom;
@@ -5,7 +6,8 @@ import java.util.Random;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import org.springframework.stereotype.Component;
+@Component
 public class SecurityUtility {
 	private static final String SALT = "salt"; // Replace later
 	
@@ -14,10 +16,7 @@ public class SecurityUtility {
 		return new BCryptPasswordEncoder(12, new SecureRandom(SALT.getBytes()));
 	}
 	
-	/**
-	 * Pick 18 at random from SALTCHARS
-	 * @return String
-	 */
+
 	@Bean
 	public static String randomPassword() {
 		String SALTCHARS ="ABCDEFGHIJKLMNOPQRSTUVXYZ123456789";
@@ -32,3 +31,4 @@ public class SecurityUtility {
 		return saltStr;
 	}
 }
+*/
