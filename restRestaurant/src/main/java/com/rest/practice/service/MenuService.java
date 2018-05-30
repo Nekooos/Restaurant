@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import com.rest.practice.models.MenuItem;
 
 public interface MenuService {
+	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	public MenuItem save(MenuItem menuItem);
 	
@@ -19,4 +20,6 @@ public interface MenuService {
 	public List<MenuItem> findAll();
 	
 	public MenuItem find(Long id);
+
+	public void add(long itemId, long menuId);
 }

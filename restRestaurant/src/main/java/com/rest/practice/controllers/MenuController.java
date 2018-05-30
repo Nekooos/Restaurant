@@ -2,6 +2,8 @@ package com.rest.practice.controllers;
 
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +43,7 @@ public class MenuController {
 	}
 	
 	@PutMapping("/edit/{id}")
-	public ResponseEntity<MenuItem> editMenuItem(@PathVariable("id")long id, @RequestBody MenuItem menuItem) {
+	public ResponseEntity<MenuItem> editMenuItem(@PathParam("id")long id, @RequestBody MenuItem menuItem) {
 		 menuItem = menuService.edit(id, menuItem);
 		 return ResponseEntity.status(200).body(menuItem);
 	}
@@ -51,7 +53,12 @@ public class MenuController {
 		 menuService.delete(id);
 		 return ResponseEntity.status(200).body("Menu item was deleted succesfully");
 	}
-
+	
+	@PostMapping("add/{item_id}{menu_id}")
+	public void addMenuItemToMenu(@PathParam("item_id") long itemId,
+								  @PathParam("menu_id") long menuId) {
+		menuService.add(itemId, menuId);
+	}
 	 
 	/*
 	 * public ResponseEntity<?> method() {

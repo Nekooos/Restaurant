@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.userDetailsService(userService)
 			.passwordEncoder(User.PASSWORD_ENCODER);
 	}
-	
+	//remove later
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers("/user/**");
 	}
