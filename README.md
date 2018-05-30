@@ -1,7 +1,8 @@
 # Restaurant
 Work in progress
 
-Hibernate
-Rest
-Spring Boot
-Security
+Hibernate<br>
+Rest<br>
+Spring Boot<br>
+Spring Security<br>
+Angular 6
