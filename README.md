@@ -1,8 +1,7 @@
-# Restaurant
-Work in progress
+# Restaurant CMS 
 
 Hibernate<br>
 Rest<br>
 Spring Boot<br>
 Spring Security<br>
-Angular 6
+
