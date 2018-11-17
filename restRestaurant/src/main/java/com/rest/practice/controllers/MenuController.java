@@ -59,14 +59,4 @@ public class MenuController {
 								  @PathParam("menu_id") long menuId) {
 		menuService.add(itemId, menuId);
 	}
-	 
-	/*
-	 * public ResponseEntity<?> method() {
-    boolean b = // some logic
-    if (b)
-        return new ResponseEntity<Success>(HttpStatus.OK);
-    else
-        return new ResponseEntity<Error>(HttpStatus.CONFLICT); //appropriate error code
-}
-	 */
 }
