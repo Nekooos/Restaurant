@@ -19,13 +19,13 @@ public class Restaurant {
 	private String restaurantName;
 	
 	private String about;
-	
+	 
 	@Column(name = "phone_number")
 	private int phoneNumber;
 	
 	private String adress;
 	
-	@OneToMany
+	@OneToMany()
 	private List<Menu> menu;
 	
 	public Restaurant() {}

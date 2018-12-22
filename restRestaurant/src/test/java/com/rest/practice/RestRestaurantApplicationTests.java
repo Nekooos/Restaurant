@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.rest.practice.models.Drink;
-import com.rest.practice.service.MenuService;
+import com.rest.practice.service.MenuItemService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest

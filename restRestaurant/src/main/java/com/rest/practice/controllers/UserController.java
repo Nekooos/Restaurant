@@ -39,7 +39,5 @@ public class UserController {
 	public ResponseEntity<?> deleteMenuItem(@PathVariable ("id")long id) {
 		 userService.delete(id);
 		 return ResponseEntity.status(200).body("Menu item was deleted succesfully");
-	}
-
-	
+	}	
 }

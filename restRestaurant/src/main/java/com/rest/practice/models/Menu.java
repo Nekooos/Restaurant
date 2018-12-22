@@ -22,7 +22,7 @@ public class Menu {
 	@ManyToOne
 	private Restaurant restaurant;
 	
-	@OneToMany
+	@OneToMany(mappedBy="MenuItem")
 	private List<MenuItem> menuitems;
 	
 	public Menu() {}

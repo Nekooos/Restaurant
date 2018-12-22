@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/menu/**")
+				.antMatchers("/menu/**", "/item/**")
 				.permitAll()
 				
 			.and()
@@ -45,8 +45,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		auth.userDetailsService(userService)
 			.passwordEncoder(User.PASSWORD_ENCODER);
 	}
+	/*
 	//remove later
 	public void configure(WebSecurity web) {
 		web.ignoring().antMatchers("/user/**");
 	}
+	*/
 }
