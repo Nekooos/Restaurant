@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,7 +33,13 @@ public class MenuItemController {
 	
 	@GetMapping("/{id}")
     public ResponseEntity<MenuItem> getMenuItem(@PathVariable ("id")Long id) {
-		MenuItem menuItem = menuItemService.find(id);
+		MenuItem menuItem;
+		try {
+			menuItem = menuItemService.find(id);
+
+		} catch(MenuItemNotFoundException e) {
+			return ResponseEntity.status(404).build();
+		}
 		return ResponseEntity.status(200).body(menuItem);
     }
 	
@@ -44,8 +51,12 @@ public class MenuItemController {
 	
 	@PutMapping("/edit/{id}")
 	public ResponseEntity<MenuItem> editMenuItem(@PathParam("id")long id, @RequestBody MenuItem menuItem) {
-		 menuItem = menuItemService.edit(id, menuItem);
-		 return ResponseEntity.status(200).body(menuItem);
+		try {
+			menuItem = menuItemService.edit(id, menuItem);
+		} catch(MenuItemNotFoundException e) {
+			return ResponseEntity.status(404).build();
+		}
+		return ResponseEntity.status(200).body(menuItem);
 	}
 
 	@DeleteMapping("/delete/{id}")

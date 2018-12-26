@@ -2,6 +2,7 @@ package com.rest.practice.service;
 
 import java.util.List;
 
+import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.rest.practice.models.MenuItem;
@@ -9,17 +10,17 @@ import com.rest.practice.models.MenuItem;
 public interface MenuItemService {
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public MenuItem save(MenuItem menuItem);
+	MenuItem save(MenuItem menuItem);
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public MenuItem edit(Long id, MenuItem menuItem);
+	MenuItem edit(long id, MenuItem menuItem) throws MenuItemNotFoundException;
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	public void delete(long id);
+	void delete(long id);
 	
-	public List<MenuItem> findAll();
+	List<MenuItem> findAll();
 	
-	public MenuItem find(Long id);
+	MenuItem find(Long id) throws MenuItemNotFoundException;
 
-	public void add(long itemId, long menuId);
+	void add(long itemId, long menuId);
 }

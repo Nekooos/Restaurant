@@ -20,8 +20,8 @@ public class DatabaseLoader implements ApplicationRunner {
 	public void run(ApplicationArguments args) throws Exception {
 		String[] roles = {"ROLE_ADMIN"};
 		User user = new User();
-		user.setFirstName("Mirre");
-		user.setLastName("Mullvad");
+		user.setFirstName("admin");
+		user.setLastName("admin");
 		user.setPassword("pass");
 		user.setUsername("user");
 		user.setRoles(roles);

@@ -16,5 +16,5 @@ public class RestRestaurantApplication {
 		SpringApplication.run(RestRestaurantApplication.class, args);
 	}
 }
-
-//$2a$10$mqnKebQBkt9VTwLyqAYK1OclLdkja7hcdjqTI4IKii3G7bL15b5Pa pass
+//password
+//$2a$10$mqnKebQBkt9VTwLyqAYK1OclLdkja7hcdjqTI4IKii3G7bL15b5Pa

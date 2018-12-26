@@ -1,7 +1,9 @@
 package com.rest.practice.service;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
+import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,15 +34,16 @@ public class MenuItemServiceImpl implements MenuItemService{
 	}
 
 	@Override
-	public MenuItem edit(Long id, MenuItem updatedMenuItem) {
+	public MenuItem edit(long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException {
 		MenuItem menuItem = menuItemRepository.findMenuItemById(id);
-		if(menuItem != null) {
+		if(menuItem.getId()==id) {
 			updatedMenuItem.setId(id);
 			BeanUtils.copyProperties(updatedMenuItem, menuItem);
 			menuItemRepository.save(menuItem);
 			return menuItem;
-		} 
-		throw new NullPointerException();
+		} else {
+			throw new MenuItemNotFoundException("Menu item was not found");
+		}
 	}
 
 	@Override
@@ -50,7 +53,8 @@ public class MenuItemServiceImpl implements MenuItemService{
 
 	@Override
 	public MenuItem find(Long id){
-		return menuItemRepository.findMenuItemById(id);
+		MenuItem menuItem = menuItemRepository.findMenuItemById(id);
+		return menuItem;
 	}
 
 	@Override
