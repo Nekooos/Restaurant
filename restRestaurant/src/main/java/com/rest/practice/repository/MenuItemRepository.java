@@ -10,8 +10,8 @@ import com.rest.practice.models.MenuItem;
 @Repository
 public interface MenuItemRepository extends JpaRepository<MenuItem, Long> {
 	
-	@Query("SELECT m FROM MenuItem m WHERE id = :menuItemId")
-	MenuItem findMenuItemById(@Param("menuItemId") long id);
+	//@Query("SELECT m FROM MenuItem m WHERE id = :menuItemId")
+	MenuItem findMenuItemById (long id);
 
 }
  
