@@ -22,8 +22,8 @@ public class DatabaseLoader implements ApplicationRunner {
 		User user = new User();
 		user.setFirstName("admin");
 		user.setLastName("admin");
-		user.setPassword("pass");
-		user.setUsername("user");
+		user.setPassword("root");
+		user.setUsername("root");
 		user.setRoles(roles);
 		userRepository.save(user);
 	}

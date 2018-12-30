@@ -20,16 +20,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "ditemtype", discriminatorType=DiscriminatorType.INTEGER)
-@JsonTypeInfo(
-	use = JsonTypeInfo.Id.NAME, 
-	include = JsonTypeInfo.As.PROPERTY, 
-	property = "type")
-@JsonSubTypes({ 
-	@Type(value = Appetizer.class, name = "appetizer"), 
-	@Type(value = MainCourse.class, name = "maincourse"),
-	@Type(value = Dessert.class, name = "dessert"),
-	@Type(value = Drink.class, name = "drink")
-})
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
+@JsonSubTypes({@Type(value = Appetizer.class, name = "appetizer"), @Type(value = MainCourse.class, name = "maincourse"), @Type(value = Dessert.class, name = "dessert"), @Type(value = Drink.class, name = "drink")})
 public abstract class MenuItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)

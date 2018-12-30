@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.websocket.server.PathParam;
 
+import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -55,13 +56,19 @@ public class MenuItemController {
 			menuItem = menuItemService.edit(id, menuItem);
 		} catch(MenuItemNotFoundException e) {
 			return ResponseEntity.status(404).build();
+		} catch(InternalServerErrorException e) {
+			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.status(200).body(menuItem);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteMenuItem(@PathVariable ("id")long id) {
-		 menuItemService.delete(id);
+		try {
+			menuItemService.delete(id);
+		} catch (Exception e) {
+
+		}
 		 return ResponseEntity.status(200).body("Menu item was deleted succesfully");
 	}
 	

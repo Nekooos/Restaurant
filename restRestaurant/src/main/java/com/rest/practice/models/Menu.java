@@ -21,16 +21,16 @@ public class Menu {
 	
 	@ManyToOne
 	private Restaurant restaurant;
-	
-	@OneToMany(mappedBy="MenuItem")
-	private List<MenuItem> menuitems;
+
+	@OneToMany
+	private List<MenuItem> menuItems;
 	
 	public Menu() {}
 	
-	public Menu(String menuName, Restaurant restaurant, List<MenuItem> menuitems) {
+	public Menu(String menuName, Restaurant restaurant, List<MenuItem> menuItems) {
 		this.menuName = menuName;
 		this.restaurant = restaurant;
-		this.menuitems = menuitems;
+		this.menuItems = menuItems;
 	}
 
 	public String getMenuName() {
@@ -50,11 +50,11 @@ public class Menu {
 	}
 
 	public List<MenuItem> getMenuitems() {
-		return menuitems;
+		return menuItems;
 	}
 
 	public void setMenuitems(List<MenuItem> menuitems) {
-		this.menuitems = menuitems;
+		this.menuItems = menuitems;
 	}
 	
 }

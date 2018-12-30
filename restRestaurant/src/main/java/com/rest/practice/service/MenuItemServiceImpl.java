@@ -3,6 +3,8 @@ package com.rest.practice.service;
 import java.util.List;
 import java.util.concurrent.Future;
 
+import com.rest.practice.Exception.CantAccessDatabseException;
+import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,15 +36,22 @@ public class MenuItemServiceImpl implements MenuItemService{
 	}
 
 	@Override
-	public MenuItem edit(long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException {
-		MenuItem menuItem = menuItemRepository.findMenuItemById(id);
-		if(menuItem.getId()==id) {
-			updatedMenuItem.setId(id);
-			BeanUtils.copyProperties(updatedMenuItem, menuItem);
-			menuItemRepository.save(menuItem);
-			return menuItem;
-		} else {
-			throw new MenuItemNotFoundException("Menu item was not found");
+	public MenuItem edit(long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException {
+		try {
+			MenuItem menuItem = menuItemRepository.findMenuItemById(id);
+			if (menuItem.getId() == id) {
+				updatedMenuItem.setId(id);
+				BeanUtils.copyProperties(updatedMenuItem, menuItem);
+				menuItemRepository.save(menuItem);
+				return menuItem;
+			} else if (menuItem.getId() != id) {
+				throw new MenuItemNotFoundException("Menu item was not found");
+			} else {
+				// Todo find and catch database exception
+				throw new CantAccessDatabseException("No connection to database");
+			}
+		} catch(Exception e) {
+			throw new InternalServerErrorException(e.getMessage());
 		}
 	}
 
@@ -53,6 +62,7 @@ public class MenuItemServiceImpl implements MenuItemService{
 
 	@Override
 	public MenuItem find(Long id){
+
 		MenuItem menuItem = menuItemRepository.findMenuItemById(id);
 		return menuItem;
 	}

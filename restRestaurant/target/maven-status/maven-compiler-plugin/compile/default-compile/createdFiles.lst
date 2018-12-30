@@ -9,6 +9,7 @@ com\rest\practice\models\Appetizer.class
 com\rest\practice\DatabaseLoader.class
 com\rest\practice\controllers\UserController.class
 com\rest\practice\controllers\MenuItemController.class
+com\rest\practice\Exception\CantAccessDatabseException.class
 com\rest\practice\repository\RestaurantRepository.class
 com\rest\practice\controllers\MenuController.class
 com\rest\practice\repository\UserRepository.class
@@ -19,8 +20,10 @@ com\rest\practice\models\MainCourse.class
 com\rest\practice\security\SecurityConfig.class
 com\rest\practice\models\Drink.class
 com\rest\practice\repository\MenuItemRepository.class
+com\rest\practice\Exception\InternalServerErrorException.class
 com\rest\practice\service\MenuServiceImpl.class
 com\rest\practice\service\MenuItemServiceImpl.class
+com\rest\practice\controllers\OrderController.class
 com\rest\practice\repository\MenuRepository.class
 com\rest\practice\models\Authority.class
 com\rest\practice\models\Menu.class

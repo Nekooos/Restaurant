@@ -2,6 +2,7 @@ package com.rest.practice.service;
 
 import java.util.List;
 
+import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 
@@ -13,7 +14,7 @@ public interface MenuItemService {
 	MenuItem save(MenuItem menuItem);
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	MenuItem edit(long id, MenuItem menuItem) throws MenuItemNotFoundException;
+	MenuItem edit(long id, MenuItem menuItem) throws MenuItemNotFoundException, InternalServerErrorException;
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
 	void delete(long id);
