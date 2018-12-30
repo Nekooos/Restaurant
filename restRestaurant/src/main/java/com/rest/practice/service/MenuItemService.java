@@ -21,7 +21,7 @@ public interface MenuItemService {
 	
 	List<MenuItem> findAll();
 	
-	MenuItem find(Long id) throws MenuItemNotFoundException;
+	MenuItem find(long id) throws MenuItemNotFoundException;
 
 	void add(long itemId, long menuId);
 }

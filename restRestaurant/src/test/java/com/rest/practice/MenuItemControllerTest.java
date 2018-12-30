@@ -1,12 +1,17 @@
 package com.rest.practice;
 
+import com.rest.practice.Exception.MenuItemNotFoundException;
 import com.rest.practice.models.*;
 import com.rest.practice.repository.MenuItemRepository;
 import com.rest.practice.service.MenuItemService;
+import com.rest.practice.service.MenuItemServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -20,12 +25,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 public class MenuItemControllerTest {
 
-    //@Autowired
-    //private MenuItemService menuItemService;
+    @Autowired
+    private MenuItemService menuItemService;
 
     @Autowired
     private MenuItemRepository menuItemRepository;
 
+    /**
+     * Add menuitems to h2 inmemory database
+     */
     @Before
     public void setUp() {
         Appetizer appetizer1 = new Appetizer("Soup", 50, "Soup with shrimps", "crab");
@@ -43,9 +51,14 @@ public class MenuItemControllerTest {
     }
 
     @Test
-    public void GetAllMenuItemsTest() {
+    public void MenuItemsRepositoryTest() throws MenuItemNotFoundException {
         List<MenuItem> menuItems = menuItemRepository.findAll();
         assertThat(menuItems.size()).isEqualTo(6);
+
+        MenuItem menuItem = menuItemRepository.findMenuItemById(2);
+        assertThat(menuItem.getName()).isEqualToIgnoringCase("garlic bread");
+        MenuItem menuItem2=menuItemService.find(2);
+        assertThat(menuItem2.getName()).isEqualToIgnoringCase("garlic bread");
     }
 
 }
