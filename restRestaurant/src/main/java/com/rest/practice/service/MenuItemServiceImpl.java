@@ -7,6 +7,7 @@ import ch.qos.logback.classic.util.StatusViaSLF4JLoggerFactory;
 import com.rest.practice.Exception.CantAccessDatabseException;
 import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
+import com.rest.practice.Exception.MenuNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -43,7 +44,7 @@ public class MenuItemServiceImpl implements MenuItemService{
 	}
 
 	@Override
-	public MenuItem edit(long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException {
+	public MenuItem edit(Long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException {
 		try {
 			logger.debug("edit menuItem");
 			MenuItem menuItem = menuItemRepository.findMenuItemById(id);
@@ -66,21 +67,31 @@ public class MenuItemServiceImpl implements MenuItemService{
 	}
 
 	@Override
-	public void delete(long id) {
+	public void delete(Long id) {
 		menuItemRepository.deleteById(id);
 	}
 
 	@Override
-	public MenuItem find(long id){
+	public MenuItem find(Long id) throws MenuItemNotFoundException{
 
-		MenuItem menuItem = menuItemRepository.findMenuItemById(id);
+		MenuItem menuItem = menuItemRepository.findById(id).orElseThrow(
+				() -> new MenuItemNotFoundException("menuitem with id: " +id + "was not found")
+		);
 		return menuItem;
 	}
 
+	/**
+	 * Add item to menu
+	 * @param itemId menuitem to add
+	 * @param menuId menu to add menuitem to
+	 * @throws MenuItemNotFoundException
+	 */
 	@Override
-	public void add(long itemId, long menuId) {
+	public void add(Long itemId, Long menuId) throws MenuItemNotFoundException {
 		MenuItem menuItem = menuItemRepository.findMenuItemById(itemId);
-		Menu menu = menuRepository.findMenuById(menuId);
+		Menu menu = menuRepository.findById(menuId).orElseThrow(
+				() -> new MenuItemNotFoundException("")
+		);
 		menu.getMenuitems().add(menuItem);
 		menuRepository.save(menu);
 	}

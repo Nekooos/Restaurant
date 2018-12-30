@@ -74,7 +74,7 @@ public class MenuItemController {
 	
 	@PostMapping("add{item_id}/menu{menu_id}")
 	public void addMenuItemToMenu(@PathParam("item_id") long itemId,
-								  @PathParam("menu_id") long menuId) {
+								  @PathParam("menu_id") long menuId) throws MenuItemNotFoundException{
 		menuItemService.add(itemId, menuId);
 	}
 	 

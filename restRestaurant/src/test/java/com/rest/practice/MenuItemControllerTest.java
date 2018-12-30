@@ -5,6 +5,7 @@ import com.rest.practice.models.*;
 import com.rest.practice.repository.MenuItemRepository;
 import com.rest.practice.service.MenuItemService;
 import com.rest.practice.service.MenuItemServiceImpl;
+import com.rest.practice.service.MenuService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,6 +16,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,13 +24,16 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@ComponentScan(basePackageClasses = {
+        MenuItemService.class,
+        MenuService.class
+})
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class MenuItemControllerTest {
 
-    @Mock
+    @Autowired
     private MenuItemServiceImpl menuItemService;
 
     @Autowired
@@ -61,8 +66,9 @@ public class MenuItemControllerTest {
 
         MenuItem menuItem = menuItemRepository.findMenuItemById(2);
         assertThat(menuItem.getName()).isEqualToIgnoringCase("garlic bread");
-        MenuItem menuItem2=menuItemService.find(2);
-        
+        MenuItem menuItem2=menuItemService.find(new Long(2));
+        System.out.println("---------------" +menuItem2.getName());
+        assertThat(menuItem2.getName()).isEqualToIgnoringCase("garlic bread");
     }
 
 }

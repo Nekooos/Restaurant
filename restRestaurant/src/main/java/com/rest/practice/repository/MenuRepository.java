@@ -6,6 +6,6 @@ import com.rest.practice.models.Menu;
 
 public interface MenuRepository extends CrudRepository<Menu, Long>{
 
-	Menu findMenuById(long menuId);
+	//Menu findMenuById(long menuId);
 
 }

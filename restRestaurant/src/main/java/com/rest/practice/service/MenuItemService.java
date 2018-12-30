@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
+import com.rest.practice.Exception.MenuNotFoundException;
 import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.rest.practice.models.MenuItem;
@@ -14,14 +15,14 @@ public interface MenuItemService {
 	MenuItem save(MenuItem menuItem);
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	MenuItem edit(long id, MenuItem menuItem) throws MenuItemNotFoundException, InternalServerErrorException;
+	MenuItem edit(Long id, MenuItem menuItem) throws MenuItemNotFoundException, InternalServerErrorException;
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	void delete(long id);
+	void delete(Long id);
 	
 	List<MenuItem> findAll();
 	
-	MenuItem find(long id) throws MenuItemNotFoundException;
+	MenuItem find(Long id) throws MenuItemNotFoundException;
 
-	void add(long itemId, long menuId);
+	void add(Long itemId, Long menuId) throws MenuItemNotFoundException;
 }

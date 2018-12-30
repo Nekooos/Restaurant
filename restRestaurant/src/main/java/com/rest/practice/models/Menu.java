@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Menu {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
@@ -31,6 +32,13 @@ public class Menu {
 		this.menuName = menuName;
 		this.restaurant = restaurant;
 		this.menuItems = menuItems;
+	}
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getMenuName() {
