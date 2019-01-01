@@ -18,11 +18,12 @@ public interface MenuItemService {
 	MenuItem edit(Long id, MenuItem menuItem) throws MenuItemNotFoundException, InternalServerErrorException;
 	
 	@PreAuthorize("hasRole('ROLE_USER')")
-	void delete(Long id);
+	void delete(Long id) throws MenuItemNotFoundException;
 	
 	List<MenuItem> findAll();
 	
 	MenuItem find(Long id) throws MenuItemNotFoundException;
 
-	void add(Long itemId, Long menuId) throws MenuItemNotFoundException;
+	@PreAuthorize("hasRole('ROLE_USER')")
+	void addToMenu(Long itemId, Long menuId) throws MenuItemNotFoundException, MenuNotFoundException;
 }

@@ -3,6 +3,7 @@ com\rest\practice\service\RestaurantServiceImpl.class
 com\rest\practice\service\RestaurantService.class
 com\rest\practice\service\MenuItemService.class
 com\rest\practice\service\UserServiceImpl.class
+com\rest\practice\Exception\MenuNotFoundException.class
 com\rest\practice\service\UserService.class
 com\rest\practice\models\MenuItem.class
 com\rest\practice\models\Appetizer.class

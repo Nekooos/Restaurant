@@ -1,6 +1,7 @@
 package com.rest.practice.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Future;
 
 import ch.qos.logback.classic.util.StatusViaSLF4JLoggerFactory;
@@ -30,6 +31,9 @@ public class MenuItemServiceImpl implements MenuItemService{
 	private MenuItemRepository menuItemRepository;
 	
 	@Autowired
+	private MenuService menuService;
+
+	@Autowired
 	private MenuRepository menuRepository;
 	
 	@Override
@@ -45,56 +49,39 @@ public class MenuItemServiceImpl implements MenuItemService{
 
 	@Override
 	public MenuItem edit(Long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException {
-		try {
-			logger.debug("edit menuItem");
-			MenuItem menuItem = menuItemRepository.findMenuItemById(id);
-			if (menuItem.getId() == id) {
-				updatedMenuItem.setId(id);
-				BeanUtils.copyProperties(updatedMenuItem, menuItem);
-				menuItemRepository.save(menuItem);
-				return menuItem;
-			} else if (menuItem.getId() != id) {
-				logger.debug("No matching id, 404");
-				throw new MenuItemNotFoundException("Menu item was not found");
-			} else {
-				// Todo find and catch database exception
-				throw new CantAccessDatabseException("No connection to database");
-			}
-		} catch(Exception e) {
-			// Todo find Exceptions that could be thrown
-			throw new InternalServerErrorException(e.getMessage());
-		}
+
+		logger.debug("edit menuItem");
+		MenuItem menuItem = this.find(id);
+		//updatedMenuItem.setId(id);
+		BeanUtils.copyProperties(updatedMenuItem, menuItem);
+		menuItemRepository.save(menuItem);
+		return menuItem;
 	}
 
 	@Override
-	public void delete(Long id) {
-		menuItemRepository.deleteById(id);
+	public void delete(Long id) throws MenuItemNotFoundException {
+		try {
+			menuItemRepository.deleteById(id);
+		} catch (IllegalArgumentException e) {
+			throw new MenuItemNotFoundException("Could not delete menuItem with id: " + id.toString());
+		}
 	}
 
 	@Override
 	public MenuItem find(Long id) throws MenuItemNotFoundException{
 
 		MenuItem menuItem = menuItemRepository.findById(id).orElseThrow(
-				() -> new MenuItemNotFoundException("menuitem with id: " +id + "was not found")
-		);
+				() -> new MenuItemNotFoundException("menuitem with id: " + id + " was not found"));
 		return menuItem;
 	}
 
-	/**
-	 * Add item to menu
-	 * @param itemId menuitem to add
-	 * @param menuId menu to add menuitem to
-	 * @throws MenuItemNotFoundException
-	 */
+
 	@Override
-	public void add(Long itemId, Long menuId) throws MenuItemNotFoundException {
-		MenuItem menuItem = menuItemRepository.findMenuItemById(itemId);
-		Menu menu = menuRepository.findById(menuId).orElseThrow(
-				() -> new MenuItemNotFoundException("")
-		);
+	public void addToMenu(Long itemId, Long menuId) throws MenuItemNotFoundException, MenuNotFoundException {
+		MenuItem menuItem = this.find(itemId);
+		Menu menu = menuService.find(menuId);
 		menu.getMenuitems().add(menuItem);
 		menuRepository.save(menu);
 	}
-
 } 
  

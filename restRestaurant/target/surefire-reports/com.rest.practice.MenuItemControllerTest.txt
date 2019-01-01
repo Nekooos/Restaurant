@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.rest.practice.MenuItemControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.963 s <<< FAILURE! - in com.rest.practice.MenuItemControllerTest
-MenuItemsRepositoryTest(com.rest.practice.MenuItemControllerTest)  Time elapsed: 0.226 s  <<< ERROR!
-java.lang.NullPointerException
-	at com.rest.practice.MenuItemControllerTest.MenuItemsRepositoryTest(MenuItemControllerTest.java:63)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.221 s - in com.rest.practice.MenuItemControllerTest

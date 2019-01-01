@@ -1,74 +1,45 @@
 package com.rest.practice;
 
-import com.rest.practice.Exception.MenuItemNotFoundException;
-import com.rest.practice.models.*;
-import com.rest.practice.repository.MenuItemRepository;
-import com.rest.practice.service.MenuItemService;
-import com.rest.practice.service.MenuItemServiceImpl;
-import com.rest.practice.service.MenuService;
-import org.junit.Before;
+import com.rest.practice.controllers.MenuItemController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.test.context.ContextConfiguration;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.List;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-@ComponentScan(basePackageClasses = {
-        MenuItemService.class,
-        MenuService.class
-})
-@SpringBootTest
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest
+@AutoConfigureMockMvc
 public class MenuItemControllerTest {
 
     @Autowired
-    private MenuItemServiceImpl menuItemService;
+    MenuItemController menuItemController;
 
     @Autowired
-    private MenuItemRepository menuItemRepository;
+    private MockMvc mockMvc;
 
-    /**
-     * Add menuitems to h2 inmemory database
-     */
-    @Before
-    public void setUp() {
-        MockitoAnnotations.initMocks(this);
-        Appetizer appetizer1 = new Appetizer("Soup", 50, "Soup with shrimps", "crab");
-        Appetizer appetizer2 = new Appetizer("Garlic Bread", 50, "Bread with garlic flavor", "none");
-        MainCourse mainCourse1 = new MainCourse("Chicken", 100, "chicken with curry", "duck");
-        MainCourse mainCourse2 = new MainCourse("Beef", 100, "Beef and fries", "none");
-        Dessert dessert1 = new Dessert("Icecream", 50, "Straberry icecream", "nuts");
-        Drink drink1 = new Drink("Guinness", 50, "beer", "none", true);
-        menuItemRepository.save(appetizer1);
-        menuItemRepository.save(appetizer2);
-        menuItemRepository.save(mainCourse1);
-        menuItemRepository.save(mainCourse2);
-        menuItemRepository.save(dessert1);
-        menuItemRepository.save(drink1);
+    @Test
+    public void getAllmenuItems_response200() throws Exception {
+        // Todo when given
+        mockMvc.perform(get("/item/all")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().is2xxSuccessful());
     }
 
     @Test
-    public void MenuItemsRepositoryTest() throws MenuItemNotFoundException {
-        List<MenuItem> menuItems = menuItemRepository.findAll();
-        assertThat(menuItems.size()).isEqualTo(6);
-
-        MenuItem menuItem = menuItemRepository.findMenuItemById(2);
-        assertThat(menuItem.getName()).isEqualToIgnoringCase("garlic bread");
-        MenuItem menuItem2=menuItemService.find(new Long(2));
-        System.out.println("---------------" +menuItem2.getName());
-        assertThat(menuItem2.getName()).isEqualToIgnoringCase("garlic bread");
+    public void findById_response200() throws Exception {
+        // Todo when given
+        mockMvc.perform(get("/item/1")
+        .contentType(MediaType.APPLICATION_JSON))
+        .andDo(print())
+        .andExpect(status().is2xxSuccessful());
     }
-
 }

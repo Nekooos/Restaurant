@@ -6,6 +6,9 @@ import javax.websocket.server.PathParam;
 
 import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
+import com.rest.practice.Exception.MenuNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,12 +27,15 @@ import com.rest.practice.service.MenuItemService;
 @RequestMapping("/item")
 public class MenuItemController {
 
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@Autowired
 	private MenuItemService menuItemService;
 	
 	@GetMapping("/all")
-    public List<MenuItem> getMenu() {
-		return menuItemService.findAll();
+    public ResponseEntity<List<MenuItem>> getMenu() {
+		List<MenuItem> menuItems = menuItemService.findAll();
+		return ResponseEntity.status(200).body(menuItems);
     }
 	
 	@GetMapping("/{id}")
@@ -67,15 +73,21 @@ public class MenuItemController {
 		try {
 			menuItemService.delete(id);
 		} catch (Exception e) {
-
+			return ResponseEntity.status(500).build();
 		}
-		 return ResponseEntity.status(200).body("Menu item was deleted succesfully");
+		return ResponseEntity.status(200).body("Menu item was deleted succesfully");
 	}
 	
-	@PostMapping("add{item_id}/menu{menu_id}")
-	public void addMenuItemToMenu(@PathParam("item_id") long itemId,
-								  @PathParam("menu_id") long menuId) throws MenuItemNotFoundException{
-		menuItemService.add(itemId, menuId);
+	@PostMapping("/add{item_id}")
+	public ResponseEntity<?> addMenuItem(@PathParam("item_id") @RequestBody MenuItem menuItem) {
+		try {
+			menuItemService.save(menuItem);
+		} catch (Exception e) {
+			//todo find exceptions
+			logger.debug("internal server error" + e.getMessage());
+			return ResponseEntity.status(500).build();
+		}
+		return ResponseEntity.status(200).body(menuItem);
 	}
 	 
 	/*

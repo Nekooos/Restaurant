@@ -20,6 +20,7 @@ C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\service\MenuI
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\controllers\RestaurantController.java
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\security\SecurityConfig.java
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\models\Drink.java
+C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\Exception\MenuNotFoundException.java
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\service\RestaurantServiceImpl.java
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\models\Authority.java
 C:\repos\Restaurant\restRestaurant\src\main\java\com\rest\practice\Exception\MenuItemNotFoundException.java
