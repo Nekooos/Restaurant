@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.rest.practice.MenuItemControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.221 s - in com.rest.practice.MenuItemControllerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.208 s - in com.rest.practice.MenuItemControllerTest
