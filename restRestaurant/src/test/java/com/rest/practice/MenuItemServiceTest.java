@@ -45,12 +45,8 @@ public class MenuItemServiceTest {
     @Autowired
     private MenuRepository menuRepository;
 
-    /**
-     * Add menuitems to h2 inmemory database
-     */
     @Before
     public void setUp() throws Exception {
-        System.out.println("-----------------------------Before -------------------------");
         MockitoAnnotations.initMocks(this);
         Appetizer appetizer1 = new Appetizer("Soup", 50, "Soup with shrimps", "crab");
         Appetizer appetizer2 = new Appetizer("Garlic Bread", 50, "Bread with garlic flavor", "none");
@@ -68,8 +64,6 @@ public class MenuItemServiceTest {
 
     @After
     public void cleanUp()  {
-        System.out.println("---------------------AFTER ---------------------------");
-        System.out.println("----------------"+menuItemRepository.findAll().size());
         menuItemRepository.deleteAll();
     }
 
@@ -81,17 +75,17 @@ public class MenuItemServiceTest {
 
     @Test
     public void getMenuItemByIdTest() throws MenuItemNotFoundException {
-        MenuItem menuItem2 = menuItemService.find(new Long(2));
+        MenuItem menuItem2 = menuItemService.find(2L);
         assertThat(menuItem2.getName()).isEqualToIgnoringCase("garlic bread");
     }
 
     @Test
-    public void saveMenuItem() throws MenuItemNotFoundException{
+    public void saveMenuItem() throws MenuItemNotFoundException {
         // Todo set autoincrement to 0 so id can be 7
         Drink drink = new Drink("Juice", 50, "Orange juice", "none", false);
 
         menuItemRepository.save(drink);
-        MenuItem addedDrink = menuItemService.find(new Long(19));
+        MenuItem addedDrink = menuItemService.find(19L);
 
         System.out.println("menu item" + addedDrink.getId());
         assertThat(addedDrink.getName()).isEqualToIgnoringCase("juice");

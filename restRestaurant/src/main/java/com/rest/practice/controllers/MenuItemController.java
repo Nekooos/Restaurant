@@ -1,5 +1,6 @@
 package com.rest.practice.controllers;
 
+import java.net.ConnectException;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -34,7 +35,14 @@ public class MenuItemController {
 	
 	@GetMapping("/all")
     public ResponseEntity<List<MenuItem>> getMenu() {
-		List<MenuItem> menuItems = menuItemService.findAll();
+		List<MenuItem> menuItems;
+		try {
+			menuItems = menuItemService.findAll();
+		} catch (Exception e) {
+			//todo figure out error codes and status codes
+			logger.debug("internal server error" + e.getMessage());
+			return ResponseEntity.status(500).build();
+		}
 		return ResponseEntity.status(200).body(menuItems);
     }
 	
@@ -46,14 +54,24 @@ public class MenuItemController {
 
 		} catch(MenuItemNotFoundException e) {
 			return ResponseEntity.status(404).build();
+		} catch (Exception e) {
+			//todo figure out error codes and status codes
+			logger.debug("internal server error" + e.getMessage());
+			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.status(200).body(menuItem);
     }
 	
 	@PostMapping("/save")
 	public ResponseEntity<MenuItem> saveMenuItem(@RequestBody MenuItem menuItem) {
-		 menuItemService.save(menuItem);
-		 return ResponseEntity.status(201).body(menuItem);
+		try {
+			menuItemService.save(menuItem);
+		} catch (InternalServerErrorException e) {
+			//todo figure out error codes and status codes
+			logger.debug("internal server error due to: " + e.getMessage());
+			return ResponseEntity.status(500).build();
+		}
+		return ResponseEntity.status(201).body(menuItem);
 	}
 	
 	@PutMapping("/edit/{id}")
@@ -62,7 +80,9 @@ public class MenuItemController {
 			menuItem = menuItemService.edit(id, menuItem);
 		} catch(MenuItemNotFoundException e) {
 			return ResponseEntity.status(404).build();
-		} catch(InternalServerErrorException e) {
+		} catch (Exception e) {
+			//todo figure out error codes and status codes
+			logger.debug("internal server error due to: " + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.status(200).body(menuItem);
@@ -72,31 +92,29 @@ public class MenuItemController {
 	public ResponseEntity<?> deleteMenuItem(@PathVariable ("id")long id) {
 		try {
 			menuItemService.delete(id);
+		} catch(MenuItemNotFoundException e) {
+			// Todo create conflict exception
+			return ResponseEntity.status(409).build();
+		} catch (ConnectException e) {
+			logger.debug("");
+			return ResponseEntity.status(503).build();
 		} catch (Exception e) {
+			//todo figure out error codes and status codes
+			logger.debug("internal server error due to: " + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.status(200).body("Menu item was deleted succesfully");
 	}
 	
-	@PostMapping("/add{item_id}")
-	public ResponseEntity<?> addMenuItem(@PathParam("item_id") @RequestBody MenuItem menuItem) {
+	@PostMapping("/add{menu_id}")
+	public ResponseEntity<?> addMenuItem(@PathVariable("menu_id") @RequestBody MenuItem menuItem) {
 		try {
 			menuItemService.save(menuItem);
 		} catch (Exception e) {
-			//todo find exceptions
+			//todo figure out error codes and status codes
 			logger.debug("internal server error" + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
 		return ResponseEntity.status(200).body(menuItem);
 	}
-	 
-	/*
-	 * public ResponseEntity<?> method() {
-    boolean b = // some logic
-    if (b)
-        return new ResponseEntity<Success>(HttpStatus.OK);
-    else
-        return new ResponseEntity<Error>(HttpStatus.CONFLICT); //appropriate error code
-}
-	 */
 }

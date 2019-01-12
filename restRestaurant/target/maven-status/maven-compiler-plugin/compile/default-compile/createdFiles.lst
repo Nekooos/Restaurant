@@ -25,9 +25,12 @@ com\rest\practice\Exception\InternalServerErrorException.class
 com\rest\practice\service\MenuServiceImpl.class
 com\rest\practice\service\MenuItemServiceImpl.class
 com\rest\practice\controllers\OrderController.class
+com\rest\practice\controllers\BookingController.class
 com\rest\practice\repository\MenuRepository.class
 com\rest\practice\models\Authority.class
 com\rest\practice\models\Menu.class
+com\rest\practice\Exception\RestaurantNotFoundException.class
 com\rest\practice\models\Restaurant.class
 com\rest\practice\controllers\RestaurantController.class
 com\rest\practice\models\Dessert.class
+com\rest\practice\models\Table.class

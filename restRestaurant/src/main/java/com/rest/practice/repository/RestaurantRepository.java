@@ -6,6 +6,4 @@ import com.rest.practice.models.Restaurant;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long>{
 
-	Restaurant findRestaurantById(Long id);
-
 }

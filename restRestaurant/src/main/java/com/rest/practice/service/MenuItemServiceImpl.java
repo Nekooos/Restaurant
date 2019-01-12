@@ -12,6 +12,7 @@ import com.rest.practice.Exception.MenuNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,12 @@ public class MenuItemServiceImpl implements MenuItemService{
 	private MenuRepository menuRepository;
 	
 	@Override
-	public MenuItem save(MenuItem menuItem) {
-		menuItemRepository.save(menuItem);
+	public MenuItem save(MenuItem menuItem) throws InternalServerErrorException {
+		try {
+			menuItemRepository.save(menuItem);
+		} catch (Exception e) {
+			throw new InternalServerErrorException("Something went wrong when saving");
+		}
 		return menuItem;
 	}
 	
@@ -48,11 +53,10 @@ public class MenuItemServiceImpl implements MenuItemService{
 	}
 
 	@Override
-	public MenuItem edit(Long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException {
+	public MenuItem edit(Long id, MenuItem updatedMenuItem) throws MenuItemNotFoundException, InternalServerErrorException, BeansException {
 
 		logger.debug("edit menuItem");
 		MenuItem menuItem = this.find(id);
-		//updatedMenuItem.setId(id);
 		BeanUtils.copyProperties(updatedMenuItem, menuItem);
 		menuItemRepository.save(menuItem);
 		return menuItem;

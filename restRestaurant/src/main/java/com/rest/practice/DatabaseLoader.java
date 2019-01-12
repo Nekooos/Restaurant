@@ -6,7 +6,9 @@ import org.springframework.boot.ApplicationRunner;
 
 import com.rest.practice.models.User;
 import com.rest.practice.repository.UserRepository;
-//@Component
+import org.springframework.stereotype.Component;
+
+@Component
 public class DatabaseLoader implements ApplicationRunner {
 	
 	private final UserRepository userRepository;
@@ -22,8 +24,8 @@ public class DatabaseLoader implements ApplicationRunner {
 		User user = new User();
 		user.setFirstName("admin");
 		user.setLastName("admin");
-		user.setPassword("root");
-		user.setUsername("root");
+		user.setPassword("admin");
+		user.setUsername("admin");
 		user.setRoles(roles);
 		userRepository.save(user);
 	}
