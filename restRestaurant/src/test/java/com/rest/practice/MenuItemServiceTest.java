@@ -1,5 +1,6 @@
 package com.rest.practice;
 
+import com.rest.practice.Exception.InternalServerErrorException;
 import com.rest.practice.Exception.MenuItemNotFoundException;
 import com.rest.practice.models.*;
 import com.rest.practice.repository.MenuItemRepository;
@@ -7,6 +8,7 @@ import com.rest.practice.repository.MenuRepository;
 import com.rest.practice.service.MenuItemService;
 import com.rest.practice.service.MenuItemServiceImpl;
 import com.rest.practice.service.MenuService;
+import org.h2.engine.Session;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -20,6 +22,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -64,7 +67,9 @@ public class MenuItemServiceTest {
 
     @After
     public void cleanUp()  {
+        // Todo set autoincrement to 0
         menuItemRepository.deleteAll();
+        menuItemRepository.flush();
     }
 
     @Test
@@ -81,14 +86,28 @@ public class MenuItemServiceTest {
 
     @Test
     public void saveMenuItem() throws MenuItemNotFoundException {
-        // Todo set autoincrement to 0 so id can be 7
         Drink drink = new Drink("Juice", 50, "Orange juice", "none", false);
 
         menuItemRepository.save(drink);
-        MenuItem addedDrink = menuItemService.find(19L);
+        MenuItem addedDrink = menuItemService.find(7L);
 
         System.out.println("menu item" + addedDrink.getId());
         assertThat(addedDrink.getName()).isEqualToIgnoringCase("juice");
+    }
+
+    @Test
+    public void deleteMenuItem() {
+        menuItemRepository.deleteById(3L);
+        boolean menuItemExists = menuItemRepository.existsById(3L);
+        assertThat(menuItemExists).isFalse();
+    }
+
+    @Test
+    public void changeMenuItemName() throws MenuItemNotFoundException, InternalServerErrorException {
+        Optional<MenuItem> menuItem = menuItemRepository.findById(4L);
+        menuItem.ifPresent(m -> m.setName("new Name"));
+        menuItemService.edit(4L, menuItem.get());
+        assertThat(menuItemRepository.findById(4L).get().getName()).isEqualToIgnoringCase("new Name");
     }
 
 }

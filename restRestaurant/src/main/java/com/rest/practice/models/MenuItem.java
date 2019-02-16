@@ -17,12 +17,14 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import java.util.Comparator;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "ditemtype", discriminatorType=DiscriminatorType.INTEGER)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({@Type(value = Appetizer.class, name = "appetizer"), @Type(value = MainCourse.class, name = "maincourse"), @Type(value = Dessert.class, name = "dessert"), @Type(value = Drink.class, name = "drink")})
-public abstract class MenuItem {
+public abstract class MenuItem implements Comparable<MenuItem>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private long id;
@@ -40,6 +42,9 @@ public abstract class MenuItem {
 	@JsonProperty(access = Access.WRITE_ONLY) 
 	@Column(name="secret_ingredient")
 	private String secretIngredient;
+
+	@Column(length = 100)
+	private String allergies;
 	
 	public MenuItem() {
 		super();
@@ -91,10 +96,19 @@ public abstract class MenuItem {
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public String getAllergies() {
+		return allergies;
+	}
+
+	public void setAllergies(String allergies) {
+		this.allergies = allergies;
+	}
+
 	@Override
 	public String toString() {
 		

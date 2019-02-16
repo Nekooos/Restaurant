@@ -26,7 +26,6 @@ public class MenuServiceImpl implements MenuService{
 
 	@Override
 	public Menu find(Long id) throws MenuNotFoundException{
-
 		Menu menu = menuRepository.findById(id).orElseThrow(
 				() -> new MenuNotFoundException("Menu not found with id: " + id ));
 		return menu;

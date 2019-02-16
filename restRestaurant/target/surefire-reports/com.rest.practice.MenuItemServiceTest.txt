@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.rest.practice.MenuItemServiceTest
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.065 s <<< FAILURE! - in com.rest.practice.MenuItemServiceTest
-saveMenuItem(com.rest.practice.MenuItemServiceTest)  Time elapsed: 0.264 s  <<< ERROR!
-com.rest.practice.Exception.MenuItemNotFoundException: menuitem with id: 7 was not found
-	at com.rest.practice.MenuItemServiceTest.saveMenuItem(MenuItemServiceTest.java:91)
-
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.294 s - in com.rest.practice.MenuItemServiceTest

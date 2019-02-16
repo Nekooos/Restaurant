@@ -23,4 +23,9 @@ public class Drink extends MenuItem{
 	public void setAlcohol(boolean alcohol) {
 		this.alcohol = alcohol;
 	}
+
+	@Override
+	public int compareTo(MenuItem o) {
+		return 0;
+	}
 }

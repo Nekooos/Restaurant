@@ -52,9 +52,6 @@ public class MenuItemControllerTest {
     @MockBean
     MenuItemService menuItemService;
 
-    @Autowired
-    ObjectMapper objectMapper;
-
     @Test
     public void menuItemServiceMockShouldNotBeNull() {
         assertThat(this.menuItemService).isNotNull();
@@ -112,6 +109,5 @@ public class MenuItemControllerTest {
                 .contentType(MediaType.APPLICATION_JSON).content(json))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.name").value("beef"));
-
     }
 }

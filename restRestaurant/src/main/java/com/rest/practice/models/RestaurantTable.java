@@ -3,7 +3,7 @@ package com.rest.practice.models;
 import javax.persistence.*;
 
 @Entity
-class Table {
+public class RestaurantTable {
 
     @Id
     @GeneratedValue(strategy= GenerationType.TABLE)
@@ -12,11 +12,14 @@ class Table {
     @Column(name = "seats")
     private int seats;
 
-    public Table() {
+    @Column(name = "booked")
+    boolean booked;
+
+    public RestaurantTable() {
 
     }
 
-    public Table(int id, int seats) {
+    public RestaurantTable(int id, int seats) {
         this.seats = seats;
     }
 
@@ -26,5 +29,12 @@ class Table {
 
     public int getSeats() {
         return seats;
+    }
+
+    public boolean isBooked() {
+        return booked;
+    }
+    public void setBooked(boolean booked) {
+        this.booked = booked;
     }
 }

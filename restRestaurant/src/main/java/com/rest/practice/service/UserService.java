@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService{
 	@PreAuthorize("hasRole('ROLE_USER')")
 	List<User> findAll();
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	void delete(long id);
+	void delete(Long id);
 }
 
 

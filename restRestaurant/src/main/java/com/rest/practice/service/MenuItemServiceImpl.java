@@ -73,7 +73,6 @@ public class MenuItemServiceImpl implements MenuItemService{
 
 	@Override
 	public MenuItem find(Long id) throws MenuItemNotFoundException{
-
 		MenuItem menuItem = menuItemRepository.findById(id).orElseThrow(
 				() -> new MenuItemNotFoundException("menuitem with id: " + id + " was not found"));
 		return menuItem;

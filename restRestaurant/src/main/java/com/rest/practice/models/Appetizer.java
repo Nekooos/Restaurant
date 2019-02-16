@@ -11,4 +11,9 @@ public class Appetizer extends MenuItem{
 	public Appetizer(String name, double price, String description, String secret) {
 		super(name, price, description, secret);
 	}
+
+	@Override
+	public int compareTo(MenuItem o) {
+		return 0;
+	}
 }

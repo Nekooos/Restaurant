@@ -40,6 +40,5 @@ public class MenuController {
 		} catch(MenuNotFoundException e) {
 			return ResponseEntity.status(404).build();
 		}
-
 	}
 }
