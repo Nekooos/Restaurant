@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.rest.practice.models.Restaurant;
 import com.rest.practice.service.RestaurantService;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping("restaurant")
 public class RestaurantController {
@@ -26,7 +28,7 @@ public class RestaurantController {
 	public ResponseEntity<Restaurant> getRestaurant(@PathParam("id") long id) {
 		Restaurant restaurant;
 		try {
-			restaurant = restaurantservice.get(id);
+			 restaurant = restaurantservice.get(id);
 		} catch (RestaurantNotFoundException e) {
 			return ResponseEntity.status(404).build();
 		}

@@ -113,7 +113,7 @@ public abstract class MenuItem implements Comparable<MenuItem>{
 	public String toString() {
 		
 		return "name: " + this.getName() + "\n"
-			 + "price: " + this.getPrice();
+			 + "CalculatePrice: " + this.getPrice();
 	}
 
 }

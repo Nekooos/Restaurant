@@ -101,7 +101,7 @@ public class MenuItemControllerTest {
     public void saveMenuItem_response201() throws Exception {
         MainCourse mainCourse = new MainCourse("Beef", 100, "Beef and fries", "none");
         mainCourse.setId(2L);
-        String json = "{ \"name\" : \"beef\", \"price\" : 100, \"description\" : \"Beef and fries\", \"secret\" : \"none\", \"type\" : \"maincourse\"}";
+        String json = "{ \"name\" : \"beef\", \"CalculatePrice\" : 100, \"description\" : \"Beef and fries\", \"secret\" : \"none\", \"type\" : \"maincourse\"}";
         // todo @requestbody @pathparam
         given(this.menuItemService.save(mainCourse))
                 .willReturn(mainCourse);
