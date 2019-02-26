@@ -89,7 +89,7 @@ public class MenuItemServiceTest {
         Drink drink = new Drink("Juice", 50, "Orange juice", "none", false);
 
         menuItemRepository.save(drink);
-        MenuItem addedDrink = menuItemService.find(7L);
+        MenuItem addedDrink = menuItemService.find(19L);
 
         System.out.println("menu item" + addedDrink.getId());
         assertThat(addedDrink.getName()).isEqualToIgnoringCase("juice");
@@ -97,17 +97,17 @@ public class MenuItemServiceTest {
 
     @Test
     public void deleteMenuItem() {
-        menuItemRepository.deleteById(3L);
+        menuItemRepository.deleteById(28L);
         boolean menuItemExists = menuItemRepository.existsById(3L);
         assertThat(menuItemExists).isFalse();
     }
 
     @Test
     public void changeMenuItemName() throws MenuItemNotFoundException, InternalServerErrorException {
-        Optional<MenuItem> menuItem = menuItemRepository.findById(4L);
+        Optional<MenuItem> menuItem = menuItemRepository.findById(21L);
         menuItem.ifPresent(m -> m.setName("new Name"));
-        menuItemService.edit(4L, menuItem.get());
-        assertThat(menuItemRepository.findById(4L).get().getName()).isEqualToIgnoringCase("new Name");
+        menuItemService.edit(21L, menuItem.get());
+        assertThat(menuItemRepository.findById(21L).get().getName()).isEqualToIgnoringCase("new Name");
     }
 
 }
