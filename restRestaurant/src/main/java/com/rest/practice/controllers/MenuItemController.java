@@ -39,7 +39,6 @@ public class MenuItemController {
 		try {
 			menuItems = menuItemService.findAll();
 		} catch (Exception e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error" + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
@@ -55,7 +54,6 @@ public class MenuItemController {
 		} catch(MenuItemNotFoundException e) {
 			return ResponseEntity.status(404).build();
 		} catch (Exception e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error" + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
@@ -67,7 +65,6 @@ public class MenuItemController {
 		try {
 			menuItemService.save(menuItem);
 		} catch (InternalServerErrorException e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error due to: " + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
@@ -81,7 +78,6 @@ public class MenuItemController {
 		} catch(MenuItemNotFoundException e) {
 			return ResponseEntity.status(404).build();
 		} catch (Exception e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error due to: " + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
@@ -93,13 +89,11 @@ public class MenuItemController {
 		try {
 			menuItemService.delete(id);
 		} catch(MenuItemNotFoundException e) {
-			// Todo create conflict exception
 			return ResponseEntity.status(409).build();
 		} catch (ConnectException e) {
 			logger.debug("");
 			return ResponseEntity.status(503).build();
 		} catch (Exception e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error due to: " + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
@@ -111,7 +105,6 @@ public class MenuItemController {
 		try {
 			menuItemService.save(menuItem);
 		} catch (Exception e) {
-			//todo figure out error codes and status codes
 			logger.debug("internal server error" + e.getMessage());
 			return ResponseEntity.status(500).build();
 		}
