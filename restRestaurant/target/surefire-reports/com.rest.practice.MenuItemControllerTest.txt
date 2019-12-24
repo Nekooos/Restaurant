@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.rest.practice.MenuItemControllerTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.079 s <<< FAILURE! - in com.rest.practice.MenuItemControllerTest
+initializationError(com.rest.practice.MenuItemControllerTest)  Time elapsed: 0.004 s  <<< ERROR!
+java.lang.NoClassDefFoundError: org/apache/logging/log4j/spi/LoggerContextShutdownAware
+Caused by: java.lang.ClassNotFoundException: org.apache.logging.log4j.spi.LoggerContextShutdownAware
+

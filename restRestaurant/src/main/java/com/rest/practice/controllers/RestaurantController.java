@@ -22,13 +22,13 @@ import java.util.Optional;
 public class RestaurantController {
 	
 	@Autowired
-	private RestaurantService restaurantservice;
+	private RestaurantService restaurantService;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Restaurant> getRestaurant(@PathParam("id") long id) {
 		Restaurant restaurant;
 		try {
-			 restaurant = restaurantservice.get(id);
+			 restaurant = restaurantService.get(id);
 		} catch (RestaurantNotFoundException e) {
 			return ResponseEntity.status(404).build();
 		}
@@ -38,7 +38,7 @@ public class RestaurantController {
 	@PostMapping("/save")
 	public ResponseEntity<Restaurant> saveRestaurant(Restaurant restaurant){
 		try {
-			restaurantservice.save(restaurant);
+			restaurantService.save(restaurant);
 		} catch (InternalServerErrorException e) {
 			ResponseEntity.status(500).build();
 		}
@@ -48,7 +48,7 @@ public class RestaurantController {
 	@PutMapping("/edit")
 	public ResponseEntity<Restaurant> editRestaurant(@PathParam("id") long id, Restaurant restaurant) {
 		try {
-			restaurantservice.edit(id, restaurant);
+			restaurantService.edit(id, restaurant);
 		} catch (RestaurantNotFoundException e) {
 			//todo make conflict exception
 			return ResponseEntity.status(409).build();

@@ -38,9 +38,8 @@ public class RestaurantServiceImpl implements RestaurantService{
 
 	@Override
 	public Restaurant get(Long id) throws RestaurantNotFoundException {
-		Restaurant restaurant = restaurantRepository.findById(id).orElseThrow(
+		return restaurantRepository.findById(id).orElseThrow(
 				() -> new RestaurantNotFoundException("Restaurant with id: " + id + " was not found")
 		);
-		return restaurant;
 	}
 } 

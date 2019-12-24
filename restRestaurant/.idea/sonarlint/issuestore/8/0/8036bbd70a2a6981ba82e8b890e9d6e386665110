@@ -1,0 +1,3 @@
+
+Fsquid:EmptyStatementUsageCheck"Remove this empty statement.(ÿÙŒÚ
+Ä%squid:RedundantThrowsDeclarationCheck"’Remove the declaration of thrown exception 'org.springframework.security.core.userdetails.UsernameNotFoundException' which is a runtime exception.(žÌÃŸ

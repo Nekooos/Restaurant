@@ -24,6 +24,8 @@ public class Restaurant {
 	private int phoneNumber;
 	
 	private String adress;
+
+	private String city;
 	
 	@OneToMany()
 	private List<Menu> menu;
@@ -85,6 +87,12 @@ public class Restaurant {
 	public void setMenu(List<Menu> menu) {
 		this.menu = menu;
 	}
-	
-	
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
 }

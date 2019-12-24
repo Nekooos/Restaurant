@@ -58,7 +58,7 @@ public class MenuItemControllerTest {
     }
 
     @Test
-    public void getAllmenuItems_response200() throws Exception {
+    public void getAllmenuItems200() throws Exception {
         Appetizer appetizer2 = new Appetizer("Garlic Bread", 50, "Bread with garlic flavor", "none");
         MainCourse mainCourse2 = new MainCourse("Beef", 100, "Beef and fries", "none");
         Dessert dessert1 = new Dessert("Icecream", 50, "Straberry icecream", "nuts");
@@ -75,7 +75,7 @@ public class MenuItemControllerTest {
     }
 
     @Test
-    public void findById_response200() throws Exception {
+    public void findById200() throws Exception {
         given(this.menuItemService.find(new Long(0)))
                 .willReturn(new Dessert("Icecream", 50, "Straberry icecream", "nuts"));
 
@@ -88,7 +88,7 @@ public class MenuItemControllerTest {
     }
 
     @Test
-    public void findById_response404() throws Exception {
+    public void findByIdResponse404() throws Exception {
         given(this.menuItemService.find(1L))
                 .willThrow(new MenuItemNotFoundException("Menu Item was not found"));
         mockMvc.perform(get("/item/{id}", 1L)
@@ -98,7 +98,7 @@ public class MenuItemControllerTest {
     }
 
     @Test
-    public void saveMenuItem_response201() throws Exception {
+    public void saveMenuItemResponse201() throws Exception {
         MainCourse mainCourse = new MainCourse("Beef", 100, "Beef and fries", "none");
         mainCourse.setId(2L);
         String json = "{ \"name\" : \"beef\", \"CalculatePrice\" : 100, \"description\" : \"Beef and fries\", \"secret\" : \"none\", \"type\" : \"maincourse\"}";

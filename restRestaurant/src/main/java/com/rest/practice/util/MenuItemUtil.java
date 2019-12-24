@@ -33,37 +33,14 @@ public class MenuItemUtil  {
     }
 
     public List<MenuItem> filterPrice(List<MenuItem> menuItems, double price) {
-        List<MenuItem> filteredList = menuItems.stream()
+        return menuItems.stream()
                 .filter(item -> item.getPrice() > price)
                 .collect(Collectors.toList());
-        return filteredList;
     }
 
     public List<MenuItem> filterAllergies(List<MenuItem> menuItems, String allergies) {
-        List<MenuItem> filteredList = menuItems.stream()
+        return menuItems.stream()
                 .filter(item -> !item.getAllergies().equals(allergies))
                 .collect(Collectors.toList());
-        return filteredList;
-    }
-
-    public double calculatePrice(double price, MenuItem menuItem) {
-        CalculatePrice calculatedPrice = (double p) -> menuItem.getPrice() * 0.2;
-
-        IntToDoubleFunction testIntToDouble = (int test) -> 5.1 + 0.15 * test;
-
-        Function<String, Integer> wordCount = (String s) -> s.split(" ").length;
-
-        BiFunction<String, Integer, Boolean> exceedsMaxLength = (s, maxLength) -> {
-            int actualLength = s.length();
-            return actualLength > maxLength;
-        };
-
-        calculatedPrice.calculate(50.5);
-
-        exceedsMaxLength.apply("derp", 5);
-
-        int wordlength = wordCount.apply("hello");
-
-        return calculatedPrice.calculate(5.0);
     }
 }

@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.*;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
@@ -50,7 +51,7 @@ public class RestaurantServiceTest {
         restaurant.get().setId(1L);
         when(restaurantRepository.findById(1L)).thenReturn(restaurant);
         Restaurant getRestaurant = restaurantService.get(1L);
-        assertThat(getRestaurant.getRestaurantName()).isEqualTo("Bubbas Kött");
+        assertEquals("Bubbas Kött", getRestaurant.getRestaurantName());
     }
 
     @Test
@@ -73,6 +74,6 @@ public class RestaurantServiceTest {
     @Test
     public void changeRestaurantName() {
         List<Menu> menu = new ArrayList<>();
-        Optional<Restaurant> restaurant = Optional.of(new Restaurant("Bubbas Kött", "fisk", 070666666, "Delfingatan 8 A 333 33 Dolphinville", menu));
+        Optional<Restaurant> restaurant = Optional.of(new Restaurant("Bubbas Kött", "fisk", 070666666, "Delfingatan 8 A 333 33 Dolphinville", Collections.emptyList()));
     }
 }
