@@ -1,15 +1,0 @@
-
-rsquid:S1192*"VDefine a constant instead of duplicating this literal "internal server error" 3 times.(ùÁİ€ÿÿÿÿÿ
-{squid:S1192D"_Define a constant instead of duplicating this literal "internal server error due to: " 3 times.(ˆáÈëıÿÿÿÿ
-wsquid:UselessImportCheck
-"NRemove this unused import 'com.rest.practice.Exception.MenuNotFoundException'.(°Ô²™şÿÿÿÿ
-]squid:S3457*"AFormat specifiers should be used instead of string concatenation.(ùÁİ€ÿÿÿÿÿ
-]squid:S34579"AFormat specifiers should be used instead of string concatenation.(ùÁİ€ÿÿÿÿÿ
-Wsquid:S4684@"@Replace this persistent entity with a simple POJO or DTO object.(ÀŠÙ˜
-]squid:S3457D"AFormat specifiers should be used instead of string concatenation.(ˆáÈëıÿÿÿÿ
-\squid:S4684K"@Replace this persistent entity with a simple POJO or DTO object.(µó›‘ùÿÿÿÿ
-]squid:S3457Q"AFormat specifiers should be used instead of string concatenation.(ˆáÈëıÿÿÿÿ
-=squid:S1452X"&Remove usage of generic wildcard type.(Ñåù
-]squid:S3457a"AFormat specifiers should be used instead of string concatenation.(ˆáÈëıÿÿÿÿ
-=squid:S1452h"&Remove usage of generic wildcard type.(šÏ¥
-]squid:S3457l"AFormat specifiers should be used instead of string concatenation.(ùÁİ€ÿÿÿÿÿ

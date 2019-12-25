@@ -1,8 +1,0 @@
-
-…squid:UselessImportCheck"URemove this unused import 'org.springframework.transaction.annotation.Transactional'.(ğùçøùÿÿÿÿ8¿ÛÆŞñ-
-usquid:UselessImportCheck"ERemove this unused import 'org.springframework.stereotype.Component'.(Ş÷Ñ¸ÿÿÿÿÿ8¿ÛÆŞñ-
-ª%squid:RedundantThrowsDeclarationCheck8"sRemove the declaration of thrown exception 'org.springframework.beans.BeansException' which is a runtime exception.(Œš‹;8¿ÛÆŞñ-
-„squid:UselessImportCheck"TRemove this unused import 'ch.qos.logback.classic.util.StatusViaSLF4JLoggerFactory'.(‘ùÊüÿÿÿÿÿ8¿ÛÆŞñ-
-hsquid:UselessImportCheck"8Remove this unused import 'java.util.concurrent.Future'.(á¬øíıÿÿÿÿ8¿ÛÆŞñ-
-_squid:UselessImportCheck"/Remove this unused import 'java.util.Optional'.(¨˜ëİüÿÿÿÿ8¿ÛÆŞñ-
-ƒsquid:UselessImportCheck"SRemove this unused import 'com.rest.practice.Exception.CantAccessDatabseException'.(ÕÇıÿÿÿÿ8¿ÛÆŞñ-
